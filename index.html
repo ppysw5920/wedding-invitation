@@ -5,7 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f8f5f0">
 <title>박선훈 ♥ 박수민 결혼합니다</title>
-<style>
+.music-box {
+  text-align: center;
+  padding: 15px;
+}
+
+#musicBtn {
+  background: transparent;
+  border: 1px solid #a27e69;
+  color: #a27e69;
+  padding: 10px 22px;
+  border-radius: 30px;
+  font-size: 13px;
+  cursor: pointer;
+}<style>
 :root{--ink:#34312e;--muted:#817b73;--paper:#fffdf9;--accent:#a27e69;--line:#e9e2d9}
 *{box-sizing:border-box}body{margin:0;background:#f3f0eb;color:var(--ink);font-family:"Noto Serif KR",Georgia,serif;line-height:1.8}
 .wrap{max-width:480px;margin:auto;background:var(--paper);min-height:100vh;box-shadow:0 0 30px #0000000b}
@@ -27,7 +40,40 @@ p{font-size:14px;margin:0 0 12px}.names{font-size:17px;line-height:2.3}.small{fo
     <h1>박선훈 <span style="color:#b69a87">♥</span> 박수민</h1>
     <div class="date">2027년 4월 17일 토요일 오후 12시 30분</div>
   </header>
+  <!-- 배경음악 -->
+  <div class="music-box">
+    <audio id="bgm" src="wedding.mp3" loop playsinline></audio>
 
+    <button onclick="toggleMusic()" id="musicBtn">
+      ♫ 음악 재생하기
+    </button>
+  </div>
+
+  <script>
+    const audio = document.getElementById('bgm');
+    const btn = document.getElementById('musicBtn');
+
+    function toggleMusic() {
+      if (audio.paused) {
+        audio.play().then(() => {
+          btn.innerHTML = 'Ⅱ 음악 끄기';
+        }).catch(() => {
+          btn.innerHTML = '♫ 다시 재생하기';
+        });
+      } else {
+        audio.pause();
+        btn.innerHTML = '♫ 음악 재생하기';
+      }
+    }
+
+    window.addEventListener('load', () => {
+      audio.play().then(() => {
+        btn.innerHTML = 'Ⅱ 음악 끄기';
+      }).catch(() => {
+        btn.innerHTML = '♫ 음악 재생하기';
+      });
+    });
+  </script>
   <!-- 사진을 같은 폴더에 wedding.jpg 이름으로 넣으면 대표사진으로 표시됩니다. -->
   <img class="photo" src="wedding.jpg" alt="신랑 신부 사진" onerror="this.style.display='none'">
 
